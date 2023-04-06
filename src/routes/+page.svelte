@@ -1,7 +1,13 @@
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
+<script>
+	import Hero from '$lib/components/Home/Hero.svelte';
+	import About from '$lib/components/Home/About.svelte';
+	import Services from '$lib/components/Home/Services.svelte';
+	import Process from '$lib/components/Home/Process.svelte';
+	import CTA from '$lib/components/Home/CTA.svelte';
+</script>
 
-<style lang="postcss">
-	:global(html) {
-		background-color: theme(colors.gray.100);
-	}
-</style>
+<Hero />
+<About />
+<Services />
+<Process />
+<CTA />

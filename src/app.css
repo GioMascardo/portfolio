@@ -1,3 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&family=Saira+Extra+Condensed:wght@500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--grid-gutter: var(--space-s-lg, clamp(1rem, calc(0.5rem + 2.51vw), 2.25rem));
+	--grid-columns: 12;
+}
+
+body {
+	background: url('../src/lib/assets/graph-paper.png') repeat;
+	font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Saira Extra Condensed', 'Roboto Flex', sans-serif;
+	font-weight: 500;
+	font-variation-settings: 'wght' 500, 'YTLC' 570, 'YTUC' 760;
+	line-height: 0.9;
+	color: theme('colors.sky.700');
+}
+
+h2 {
+	font-size: theme('fontSize.fluid-2xl');
+}
+
+h3 {
+	font-size: theme('fontSize.fluid-xl');
+	line-height: 1.1;
+}
+
+p {
+	font-size: theme('fontSize.p');
+	font-weight: 300;
+	line-height: 1.6;
+	max-width: 45ch;
+}
+
+section {
+	padding-block: theme('spacing.2xl');
+}
+
+.u-container {
+	padding-inline: var(--grid-gutter);
+	margin-inline: auto;
+}
+
+.u-grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: var(--grid-gutter);
+	padding-inline: var(--grid-gutter);
+}
+
+svg {
+	width: 16px;
+	height: 16px;
+}
+
+@media (min-width: 64rem) {
+	svg {
+		width: 24px;
+		height: 24px;
+	}
+}
