@@ -121,7 +121,7 @@
 	.title {
 		display: flex;
 		align-items: center;
-		justify-content: start;
+		justify-content: flex-start;
 		gap: theme('spacing.2xs');
 	}
 
