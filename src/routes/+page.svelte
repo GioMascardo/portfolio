@@ -5,6 +5,35 @@
 	import Process from '$lib/components/Home/Process.svelte';
 	import { applyAction, enhance } from '$app/forms';
 	import { toast } from '@zerodevx/svelte-toast';
+
+	const handleSubmit = async (/** @type {{ target: any; }} */ event) => {
+		const form = event.target;
+		const { name, email, message } = form.elements;
+		const data = JSON.stringify({ name, email, message });
+
+		const response = await fetch('https://giomascardo.com/.netlify/functions/triggerFormSubmit', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: data
+		});
+
+		console.log(response.status, response.statusText);
+		if (response.ok) {
+			return {
+				status: response.status,
+				statusText: response.statusText,
+				type: 'success'
+			};
+		} else {
+			return {
+				status: response.status,
+				statusText: response.statusText,
+				type: 'error'
+			};
+		}
+	};
 </script>
 
 <Hero />
@@ -17,7 +46,7 @@
 		<h2>Have a project?<br />Let's Get Started</h2>
 		<form
 			method="POST"
-			action="?/send"
+			on:submit|preventDefault={handleSubmit}
 			use:enhance={() => {
 				return async ({ result, update }) => {
 					if (result.type === 'error') {
@@ -35,7 +64,6 @@
 				};
 			}}
 		>
-			<input type="hidden" name="contact" value="contact" />
 			<label for="name"> Name: </label>
 			<input type="text" name="name" id="name" placeholder="John Doe" required />
 
@@ -51,7 +79,7 @@
 				placeholder="Write your message here."
 				required
 			/>
-			<button formaction="?/send">Send</button>
+			<button>Send</button>
 		</form>
 	</div>
 </section>
