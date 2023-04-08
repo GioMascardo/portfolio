@@ -3,12 +3,13 @@
 	import About from '$lib/components/Home/About.svelte';
 	import Services from '$lib/components/Home/Services.svelte';
 	import Process from '$lib/components/Home/Process.svelte';
-	import { applyAction, enhance } from '$app/forms';
 	import { toast } from '@zerodevx/svelte-toast';
 
 	const handleSubmit = async (/** @type {{ target: any; }} */ event) => {
-		const { name, email, message } = event.target;
+		const form = event.target;
+		const { name, email, message } = form;
 		const data = JSON.stringify({ name, email, message });
+		console.dir(data);
 
 		const response = await fetch('https://giomascardo.com/.netlify/functions/triggerFormSubmit', {
 			method: 'POST',
@@ -20,6 +21,14 @@
 
 		console.log(response.status, response.statusText);
 		if (response.ok) {
+			form.reset();
+			toast.push('Message sent successfully!', {
+				theme: {
+					'--toastColor': '#f1f5f9',
+					'--toastBackground': '#0369a1',
+					'--toastBarBackground': '#f1f5f9'
+				}
+			});
 			return {
 				status: response.status,
 				statusText: response.statusText,
@@ -43,26 +52,7 @@
 <section id="cta" class="u-grid">
 	<div class="wrapper">
 		<h2>Have a project?<br />Let's Get Started</h2>
-		<form
-			method="POST"
-			on:submit|preventDefault={handleSubmit}
-			use:enhance={() => {
-				return async ({ result, update }) => {
-					if (result.type === 'error') {
-						await applyAction(result);
-					} else {
-						toast.push('Message sent successfully!', {
-							theme: {
-								'--toastColor': '#e0f2fe',
-								'--toastBackground': '#0369a1',
-								'--toastBarBackground': '#e0f2fe'
-							}
-						});
-						update();
-					}
-				};
-			}}
-		>
+		<form method="POST" on:submit|preventDefault={handleSubmit}>
 			<label for="name"> Name: </label>
 			<input type="text" name="name" id="name" placeholder="John Doe" required />
 
