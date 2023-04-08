@@ -82,7 +82,8 @@
 	}
 
 	.content-container > p > span {
-		color: theme('textColor.yellow.500');
+		color: theme('textColor.yellow.400');
+		font-weight: 500;
 	}
 
 	@media (min-width: 64rem) {

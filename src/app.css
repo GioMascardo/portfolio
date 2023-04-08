@@ -9,6 +9,10 @@
 	--grid-columns: 12;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	background: url('../src/lib/assets/graph-paper.png') repeat;
 	font-family: 'Roboto', sans-serif;

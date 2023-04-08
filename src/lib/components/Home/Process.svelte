@@ -105,7 +105,6 @@
 
 	.step:nth-child(even) {
 		background-color: theme('backgroundColor.slate.200');
-		/* color: theme('textColor.slate.500'); */
 	}
 
 	.step:nth-child(odd) .title,
@@ -184,6 +183,23 @@
 		.step:nth-child(3) {
 			grid-column-start: 3;
 			grid-row: 2 / 3;
+			background-color: theme('backgroundColor.slate.200');
+			color: theme('textColor.sky.700');
+		}
+
+		.step:nth-child(4) {
+			background-color: theme('backgroundColor.sky.700');
+			color: theme('textColor.slate.100');
+		}
+
+		.step:nth-child(3) .title,
+		.step:nth-child(3) .title > * {
+			color: theme('textColor.sky.700');
+		}
+
+		.step:nth-child(4) .title,
+		.step:nth-child(4) .title > * {
+			color: theme('textColor.slate.100');
 		}
 
 		.step-count {

@@ -76,6 +76,13 @@
 		width: 100%;
 	}
 
+	li:last-child {
+		display: inline;
+		width: auto;
+		background-color: theme('backgroundColor.yellow.400');
+		color: theme('textColor.sky.700');
+	}
+
 	a {
 		text-decoration: none;
 		color: theme('textColor.sky.700');

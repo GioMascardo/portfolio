@@ -12,7 +12,7 @@
 <Services />
 <Process />
 
-<section id="CTA" class="u-grid">
+<section id="cta" class="u-grid">
 	<div class="wrapper">
 		<h2>Have a project?<br />Let's Get Started</h2>
 		<form

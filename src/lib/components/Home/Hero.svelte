@@ -6,8 +6,8 @@
 			custom-designed, and technologically-optimized websites.
 		</p>
 		<div class="button-group">
-			<button class="primary">Let’s Talk</button>
-			<button class="secondary">Scroll Down</button>
+			<a href="#cta" class="primary">Let’s Talk</a>
+			<a href="#about" class="secondary">Scroll Down</a>
 		</div>
 	</div>
 </section>
@@ -65,7 +65,7 @@
 		margin-inline: auto;
 	}
 
-	button {
+	a {
 		font-size: theme('fontSize.p');
 		padding: 1em 2em;
 		border-radius: theme('spacing.2xs');
