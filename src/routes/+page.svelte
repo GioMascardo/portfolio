@@ -15,30 +15,8 @@
 <section id="cta" class="u-grid">
 	<div class="wrapper">
 		<h2>Have a project?<br />Let's Get Started</h2>
-		<form
-			name="contact"
-			method="POST"
-			data-netlify="true"
-			use:enhance={() => {
-				return async ({ result, update }) => {
-					console.log(result.status);
-					if (result.type === 'error') {
-						await applyAction(result);
-					}
-
-					toast.push('Message sent successfully!', {
-						theme: {
-							'--toastColor': '#f1f5f9',
-							'--toastBackground': '#0369a1',
-							'--toastBarBackground': '#f1f5f9'
-						}
-					});
-
-					update();
-				};
-			}}
-		>
-			<input type="hidden" name="form-name" value="contact" />
+		<form name="contact" method="POST" data-netlify="true">
+			<input type="hidden" name="contact" value="contact" />
 			<label for="name"> Name: </label>
 			<input type="text" name="name" id="name" placeholder="John Doe" required />
 
