@@ -16,7 +16,9 @@
 	<div class="wrapper">
 		<h2>Have a project?<br />Let's Get Started</h2>
 		<form
+			name="contact"
 			method="POST"
+			data-netlify="true"
 			use:enhance={() => {
 				return async ({ result, update }) => {
 					console.log(result.status);
@@ -36,6 +38,7 @@
 				};
 			}}
 		>
+			<input type="hidden" name="form-name" value="contact" />
 			<label for="name"> Name: </label>
 			<input type="text" name="name" id="name" placeholder="John Doe" required />
 
