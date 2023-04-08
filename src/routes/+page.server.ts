@@ -1,8 +1,9 @@
 import { render } from 'svelte-email';
 import Email from '$lib/components/Email.svelte';
 import nodemailer from 'nodemailer';
-import { EMAIL, SENDINBLUE_SMTP_PASS } from '$env/static/private';
 import { error } from '@sveltejs/kit';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const actions = {
 	default: async ({ request }) => {
@@ -17,8 +18,8 @@ export const actions = {
 			port: 587,
 			secure: false,
 			auth: {
-				user: EMAIL,
-				pass: SENDINBLUE_SMTP_PASS
+				user: process.env.EMAIL,
+				pass: process.env.SENDINBLUE_SMTP_PASS
 			}
 		});
 
@@ -32,8 +33,8 @@ export const actions = {
 		});
 
 		const options = {
-			from: EMAIL,
-			to: EMAIL,
+			from: process.env.EMAIL,
+			to: process.env.EMAIL,
 			subject: 'New Message From Portfolio',
 			html: emailHtml
 		};
