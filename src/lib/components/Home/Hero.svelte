@@ -69,15 +69,19 @@
 		font-size: theme('fontSize.p');
 		padding: 1em 2em;
 		border-radius: theme('spacing.2xs');
+		transition-property: color, background-color, transform;
+		transition-duration: 0.3s;
+		transition-timing-function: ease-in-out;
+		display: inline-block;
+	}
+
+	a:hover {
+		transform: translateY(-0.25rem);
 	}
 
 	.primary {
 		background-color: theme('backgroundColor.yellow.400');
-		color: theme('textColor.sky.900');
-	}
-
-	.primary:hover {
-		background-color: theme('backgroundColor.yellow.500');
+		color: theme('textColor.sky.700');
 	}
 
 	.secondary {
@@ -86,7 +90,7 @@
 	}
 
 	.secondary:hover {
-		color: theme('textColor.yellow.500');
-		border: 1px solid theme('textColor.yellow.500');
+		background-color: theme('backgroundColor.yellow.400');
+		color: theme('textColor.sky.700');
 	}
 </style>

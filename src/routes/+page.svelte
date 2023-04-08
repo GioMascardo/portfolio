@@ -123,6 +123,11 @@
 		margin-top: theme('spacing.m');
 		max-width: 30rem;
 		align-self: center;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	button[type='submit']:hover {
+		transform: translateY(-0.25rem);
 	}
 
 	@media (min-width: 64rem) {
