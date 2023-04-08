@@ -7,8 +7,7 @@
 
 	const handleSubmit = async (/** @type {{ target: any; }} */ event) => {
 		const form = event.target;
-		const { name, email, message } = form;
-		const data = JSON.stringify({ name, email, message });
+		const data = new FormData(form);
 		console.dir(data);
 
 		const response = await fetch('https://giomascardo.com/.netlify/functions/triggerFormSubmit', {
