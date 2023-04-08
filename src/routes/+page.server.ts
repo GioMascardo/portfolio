@@ -18,8 +18,8 @@ export const actions = {
 			port: 587,
 			secure: false,
 			auth: {
-				user: process.env.EMAIL,
-				pass: process.env.SENDINBLUE_SMTP_PASS
+				user: process.env['EMAIL'],
+				pass: process.env['SENDINBLUE_SMTP_PASS']
 			}
 		});
 
@@ -33,8 +33,8 @@ export const actions = {
 		});
 
 		const options = {
-			from: process.env.EMAIL,
-			to: process.env.EMAIL,
+			from: process.env['EMAIL'],
+			to: process.env['EMAIL'],
 			subject: 'New Message From Portfolio',
 			html: emailHtml
 		};
