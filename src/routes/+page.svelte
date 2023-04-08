@@ -15,7 +15,11 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: data
+			body: JSON.stringify({
+				name: data.get('name'),
+				email: data.get('email'),
+				message: data.get('message')
+			})
 		});
 
 		console.log(response.status, response.statusText);

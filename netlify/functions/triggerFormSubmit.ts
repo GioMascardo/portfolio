@@ -11,11 +11,13 @@ const handler: Handler = async function (event) {
 		};
 	}
 
-	const requestBody = JSON.parse(event.body) as FormData;
+	const requestBody = JSON.parse(event.body) as {
+		name: string;
+		email: string;
+		message: string;
+	};
 
-	const name = requestBody.get('name') as string;
-	const email = requestBody.get('email') as string;
-	const message = requestBody.get('message') as string;
+	const { name, email, message } = requestBody;
 
 	try {
 		await fetch(`https://giomascardo.com/.netlify/functions/emails/formSubmit`, {
