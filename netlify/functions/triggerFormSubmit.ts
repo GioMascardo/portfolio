@@ -11,11 +11,11 @@ const handler: Handler = async function (event) {
 		};
 	}
 
-	const requestBody = JSON.parse(event.body) as {
-		name: string;
-		email: string;
-		message: string;
-	};
+	const requestBody = JSON.parse(event.body) as FormData;
+
+	const name = requestBody.get('name') as string;
+	const email = requestBody.get('email') as string;
+	const message = requestBody.get('message') as string;
 
 	try {
 		await fetch(`https://giomascardo.com/.netlify/functions/emails/formSubmit`, {
@@ -28,9 +28,9 @@ const handler: Handler = async function (event) {
 				to: process.env.EMAIL,
 				subject: 'New Message From Portfolio Form',
 				parameters: {
-					name: requestBody.name,
-					email: requestBody.email,
-					message: requestBody.message
+					name: name,
+					email: email,
+					message: message
 				}
 			})
 		});
