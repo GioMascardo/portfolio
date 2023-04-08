@@ -7,8 +7,7 @@
 	import { toast } from '@zerodevx/svelte-toast';
 
 	const handleSubmit = async (/** @type {{ target: any; }} */ event) => {
-		const form = event.target;
-		const { name, email, message } = form.elements;
+		const { name, email, message } = event.target;
 		const data = JSON.stringify({ name, email, message });
 
 		const response = await fetch('https://giomascardo.com/.netlify/functions/triggerFormSubmit', {
