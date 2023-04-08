@@ -1,50 +1,8 @@
-<script>
+<script lang="ts">
 	import Hero from '$lib/components/Home/Hero.svelte';
 	import About from '$lib/components/Home/About.svelte';
 	import Services from '$lib/components/Home/Services.svelte';
 	import Process from '$lib/components/Home/Process.svelte';
-	import { toast } from '@zerodevx/svelte-toast';
-
-	const handleSubmit = async (/** @type {{ target: any; }} */ event) => {
-		const form = event.target;
-		const data = new FormData(form);
-		console.dir(data);
-
-		const response = await fetch('https://giomascardo.com/.netlify/functions/triggerFormSubmit', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				name: data.get('name'),
-				email: data.get('email'),
-				message: data.get('message')
-			})
-		});
-
-		console.log(response.status, response.statusText);
-		if (response.ok) {
-			form.reset();
-			toast.push('Message sent successfully!', {
-				theme: {
-					'--toastColor': '#f1f5f9',
-					'--toastBackground': '#0369a1',
-					'--toastBarBackground': '#f1f5f9'
-				}
-			});
-			return {
-				status: response.status,
-				statusText: response.statusText,
-				type: 'success'
-			};
-		} else {
-			return {
-				status: response.status,
-				statusText: response.statusText,
-				type: 'error'
-			};
-		}
-	};
 </script>
 
 <Hero />
@@ -52,7 +10,7 @@
 <Services />
 <Process />
 
-<section id="cta" class="u-grid">
+<!-- <section id="cta" class="u-grid">
 	<div class="wrapper">
 		<h2>Have a project?<br />Let's Get Started</h2>
 		<form method="POST" on:submit|preventDefault={handleSubmit}>
@@ -74,7 +32,7 @@
 			<button>Send</button>
 		</form>
 	</div>
-</section>
+</section> -->
 
 <style>
 	.wrapper {
