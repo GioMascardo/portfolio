@@ -17,6 +17,7 @@
 		<h2>Have a project?<br />Let's Get Started</h2>
 		<form
 			method="POST"
+			action="?/send"
 			use:enhance={() => {
 				return async ({ result, update }) => {
 					if (result.type === 'error') {
@@ -24,9 +25,9 @@
 					} else {
 						toast.push('Message sent successfully!', {
 							theme: {
-								'--toastColor': 'theme("textColor.yellow.400")',
-								'--toastBackground': 'theme("backgroundColor.sky.700")',
-								'--toastBarBackground': 'theme("backgroundColor.sky.100")'
+								'--toastColor': '#e0f2fe',
+								'--toastBackground': '#0369a1',
+								'--toastBarBackground': '#e0f2fe'
 							}
 						});
 						update();
@@ -50,7 +51,7 @@
 				placeholder="Write your message here."
 				required
 			/>
-			<button type="submit">Send</button>
+			<button formaction="?/send">Send</button>
 		</form>
 	</div>
 </section>
@@ -109,7 +110,7 @@
 		color: theme('textColor.slate.300');
 	}
 
-	button[type='submit'] {
+	button {
 		background-color: theme('backgroundColor.yellow.400');
 		color: theme('textColor.sky.700');
 		font-weight: 700;
@@ -125,7 +126,7 @@
 		transition: transform 0.3s ease-in-out;
 	}
 
-	button[type='submit']:hover {
+	button:hover {
 		transform: translateY(-0.25rem);
 	}
 
