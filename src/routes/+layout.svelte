@@ -5,6 +5,10 @@
 	import { SvelteToast } from '@zerodevx/svelte-toast';
 </script>
 
+<svelte:head>
+	<title>Gio Mascardo | Freelance Web Developer</title>
+</svelte:head>
+
 <Navbar />
 <slot />
 <Footer />

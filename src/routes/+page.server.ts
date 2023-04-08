@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import { render } from 'svelte-email';
 import Email from '$lib/components/Email.svelte';
 import nodemailer from 'nodemailer';
-import { env } from '$env/dynamic/private';
+import { SENDINBLUE_SMTP_PASS } from '$env/static/private';
 
 const transporter = nodemailer.createTransport({
 	host: 'smtp-relay.sendinblue.com',
@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 	secure: false,
 	auth: {
 		user: 'mascardogio@gmail.com',
-		pass: env.SENDINBLUE_SMTP_PASS
+		pass: SENDINBLUE_SMTP_PASS
 	}
 });
 
