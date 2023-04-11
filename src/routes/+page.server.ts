@@ -21,8 +21,6 @@ export const actions: Actions = {
 			}
 		});
 
-		console.log(transporter);
-
 		const emailHtml = render({
 			template: Email,
 			props: {
@@ -31,6 +29,8 @@ export const actions: Actions = {
 				message: message
 			}
 		});
+
+		console.log(emailHtml);
 
 		const options = {
 			from: env.EMAIL,
