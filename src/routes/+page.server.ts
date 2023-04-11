@@ -36,11 +36,18 @@ export const actions: Actions = {
 			html: emailHtml
 		};
 
-		transporter.sendMail(options);
+		const response = await transporter.sendMail(options);
 
-		return {
-			statusCode: 200,
-			body: JSON.stringify({ message: 'Email Sent!' })
-		};
+		if (response.accepted.length > 0) {
+			return {
+				statusCode: 200,
+				body: JSON.stringify({ message: 'Email Sent!' })
+			};
+		} else {
+			return {
+				statusCode: 500,
+				body: JSON.stringify({ message: 'Email Failed to Send' })
+			};
+		}
 	}
 };
