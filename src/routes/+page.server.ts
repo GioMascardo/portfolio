@@ -37,10 +37,5 @@ export const actions: Actions = {
 		};
 
 		transporter.sendMail(options);
-
-		return {
-			status: 200,
-			body: 'Message sent'
-		};
 	}
 };
