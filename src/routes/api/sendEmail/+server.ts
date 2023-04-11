@@ -37,7 +37,12 @@ export const POST: RequestHandler = async (event) => {
 		html: emailHtml
 	};
 
-	const response = transporter.sendMail(options);
-
-	return json(response);
+	try {
+		const response = await transporter.sendMail(options);
+		console.log(response);
+		return json({ message: 'Email sent' });
+	} catch (err) {
+		console.log(err);
+		return json({ message: 'Email failed to send' });
+	}
 };

@@ -3,36 +3,8 @@
 	import About from '$lib/components/Home/About.svelte';
 	import Services from '$lib/components/Home/Services.svelte';
 	import Process from '$lib/components/Home/Process.svelte';
+	import { applyAction, enhance } from '$app/forms';
 	import { toast } from '@zerodevx/svelte-toast';
-
-	async function handleSubmit(event: Event) {
-		const form = event.target as HTMLFormElement;
-		const formData = new FormData(form);
-
-		const response = await fetch('https://giomascardo.com/.netlify/functions/api-sendEmail', {
-			method: 'POST',
-			body: formData
-		});
-
-		if (response.ok) {
-			form.reset();
-			toast.push('Message sent successfully!', {
-				theme: {
-					'--toastColor': '#ccfbf1',
-					'--toastBackground': '#10b981',
-					'--toastBarBackground': '#ccfbf1'
-				}
-			});
-		} else {
-			toast.push('Something went wrong. Please try again.', {
-				theme: {
-					'--toastColor': '#fef2f2',
-					'--toastBackground': '#ef4444',
-					'--toastBarBackground': '#fef2f2'
-				}
-			});
-		}
-	}
 </script>
 
 <Hero />
@@ -43,7 +15,32 @@
 <section id="cta" class="u-grid">
 	<div class="wrapper">
 		<h2>Have a project?<br />Let's Get Started</h2>
-		<form on:submit|preventDefault={handleSubmit}>
+		<form
+			method="POST"
+			use:enhance={() => {
+				return async ({ result, update }) => {
+					if (result.type === 'error') {
+						toast.push('Message sent successfully!', {
+							theme: {
+								'--toastColor': '#fef2f2',
+								'--toastBackground': '#ef4444',
+								'--toastBarBackground': '#fef2f2'
+							}
+						});
+						await applyAction(result);
+					} else {
+						toast.push('Message sent successfully!', {
+							theme: {
+								'--toastColor': '#ecfdf5',
+								'--toastBackground': '#10b981',
+								'--toastBarBackground': '#ecfdf5'
+							}
+						});
+						update();
+					}
+				};
+			}}
+		>
 			<label for="name"> Name: </label>
 			<input type="text" name="name" id="name" placeholder="John Doe" required />
 
