@@ -3,7 +3,6 @@ import Email from '$lib/components/Email.svelte';
 import { render } from 'svelte-email';
 import nodemailer from 'nodemailer';
 import { env } from '$env/dynamic/private';
-import { json } from '@sveltejs/kit';
 
 export const actions: Actions = {
 	default: async ({ request }) => {
@@ -37,14 +36,11 @@ export const actions: Actions = {
 			html: emailHtml
 		};
 
-		const info = await transporter.sendMail(options);
+		transporter.sendMail(options);
 
-		console.log(info);
-
-		if (info.accepted.length > 0) {
-			return json({ success: true });
-		} else {
-			throw new Error('Email not sent');
-		}
+		return {
+			status: 200,
+			body: 'Message sent'
+		};
 	}
 };
