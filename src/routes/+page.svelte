@@ -3,6 +3,36 @@
 	import About from '$lib/components/Home/About.svelte';
 	import Services from '$lib/components/Home/Services.svelte';
 	import Process from '$lib/components/Home/Process.svelte';
+	import { toast } from '@zerodevx/svelte-toast';
+
+	async function handleSubmit(event: Event) {
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+
+		const response = await fetch('/api/sendEmail', {
+			method: 'POST',
+			body: formData
+		});
+
+		if (response.ok) {
+			form.reset();
+			toast.push('Message sent successfully!', {
+				theme: {
+					'--toastColor': '#ccfbf1',
+					'--toastBackground': '#10b981',
+					'--toastBarBackground': '#ccfbf1'
+				}
+			});
+		} else {
+			toast.push('Something went wrong. Please try again.', {
+				theme: {
+					'--toastColor': '#fef2f2',
+					'--toastBackground': '#ef4444',
+					'--toastBarBackground': '#fef2f2'
+				}
+			});
+		}
+	}
 </script>
 
 <Hero />
@@ -10,10 +40,10 @@
 <Services />
 <Process />
 
-<!-- <section id="cta" class="u-grid">
+<section id="cta" class="u-grid">
 	<div class="wrapper">
 		<h2>Have a project?<br />Let's Get Started</h2>
-		<form method="POST" on:submit|preventDefault={handleSubmit}>
+		<form on:submit|preventDefault={handleSubmit}>
 			<label for="name"> Name: </label>
 			<input type="text" name="name" id="name" placeholder="John Doe" required />
 
@@ -32,7 +62,7 @@
 			<button>Send</button>
 		</form>
 	</div>
-</section> -->
+</section>
 
 <style>
 	.wrapper {
