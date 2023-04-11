@@ -37,5 +37,10 @@ export const actions: Actions = {
 		};
 
 		transporter.sendMail(options);
+
+		return {
+			statusCode: 200,
+			body: JSON.stringify({ message: 'Email Sent!' })
+		};
 	}
 };
