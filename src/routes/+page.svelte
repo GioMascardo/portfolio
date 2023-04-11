@@ -19,9 +19,8 @@
 			method="POST"
 			use:enhance={() => {
 				return async ({ result, update }) => {
-					console.log(result);
 					if (result.type === 'error') {
-						toast.push('Message sent successfully!', {
+						toast.push('Something went wrong.', {
 							theme: {
 								'--toastColor': '#fef2f2',
 								'--toastBackground': '#ef4444',

@@ -7,8 +7,6 @@ import { json } from '@sveltejs/kit';
 
 export const actions: Actions = {
 	default: async ({ request }) => {
-		console.log('Page Endpoint Hit');
-
 		const data = await request.formData();
 		const name = data.get('name')?.toString();
 		const email = data.get('email')?.toString();
@@ -22,6 +20,8 @@ export const actions: Actions = {
 				pass: env.SENDINBLUE_SMTP_PASS
 			}
 		});
+
+		console.log(transporter);
 
 		const emailHtml = render({
 			template: Email,
@@ -41,13 +41,13 @@ export const actions: Actions = {
 
 		transporter
 			.sendMail(options)
-			.then((response) => {
-				console.log(response);
-				return json({ message: 'Email sent' });
+			.then((info) => {
+				console.log(info);
+				return json({ message: 'success' });
 			})
 			.catch((err) => {
 				console.log(err);
-				return json({ message: 'Email failed to send' });
+				throw new Error(err);
 			});
 	}
 };
