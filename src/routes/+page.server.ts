@@ -37,15 +37,14 @@ export const actions: Actions = {
 			html: emailHtml
 		};
 
-		transporter
-			.sendMail(options)
-			.then((info) => {
-				console.log(info);
-				return json({ message: 'success' });
-			})
-			.catch((err) => {
-				console.error(err);
-				throw new Error(err);
-			});
+		const info = await transporter.sendMail(options);
+
+		console.log(info);
+
+		if (info.accepted.length > 0) {
+			return json({ success: true });
+		} else {
+			throw new Error('Email not sent');
+		}
 	}
 };
