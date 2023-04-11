@@ -7,6 +7,8 @@ import { json } from '@sveltejs/kit';
 
 export const actions: Actions = {
 	default: async ({ request }) => {
+		console.log('Page Endpoint Hit');
+
 		const data = await request.formData();
 		const name = data.get('name')?.toString();
 		const email = data.get('email')?.toString();
