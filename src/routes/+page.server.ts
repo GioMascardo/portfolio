@@ -30,8 +30,6 @@ export const actions: Actions = {
 			}
 		});
 
-		console.log(emailHtml);
-
 		const options = {
 			from: env.EMAIL,
 			to: env.EMAIL,
@@ -46,7 +44,7 @@ export const actions: Actions = {
 				return json({ message: 'success' });
 			})
 			.catch((err) => {
-				console.log(err);
+				console.error(err);
 				throw new Error(err);
 			});
 	}
