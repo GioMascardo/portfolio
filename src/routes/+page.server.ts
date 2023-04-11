@@ -15,7 +15,6 @@ export const actions: Actions = {
 		const transporter = nodemailer.createTransport({
 			host: 'smtp-relay.sendinblue.com',
 			port: 587,
-			secure: false,
 			auth: {
 				user: env.EMAIL,
 				pass: env.SENDINBLUE_SMTP_PASS
