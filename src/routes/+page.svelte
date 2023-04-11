@@ -9,7 +9,7 @@
 		const form = event.target as HTMLFormElement;
 		const formData = new FormData(form);
 
-		const response = await fetch('/api/sendEmail', {
+		const response = await fetch('https://giomascardo.com/.netlify/functions/api-sendEmail', {
 			method: 'POST',
 			body: formData
 		});

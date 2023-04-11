@@ -39,5 +39,5 @@ export const POST: RequestHandler = async (event) => {
 
 	const response = transporter.sendMail(options);
 
-	return json({ response });
+	return json(response);
 };
